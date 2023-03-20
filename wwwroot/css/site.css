@@ -1,0 +1,60 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.main-image-wrapper {
+    height: 600px;
+    width: 440px;
+}
+    .main-image-wrapper>img {
+        height: 100%;
+        width: 100%;
+    }
+.other-imges img {
+    width: 64px;
+    height: 64px;
+}
+.other-imges > a {
+    width: 64px;
+    float: left;
+}
+.other-imges > a:last-child {
+        float: none;
+}
+
+.button-holder{
+    position: absolute;
+    bottom:0;
+    width: 95%;
+    display:flex;
+    height: 26px;
+}
+.mutual-button {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 15px;
+    width: 50%;
+    align-items: center;
+}
+.add-button {
+    background-color: rgb(13,110, 253);
+}
+.delete-button {
+    background-color: rgb(220,53,69);
+}

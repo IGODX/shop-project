@@ -1,0 +1,6 @@
+﻿@{
+    if (User.IsInRole("admin") || User.IsInRole("manager"))
+        Layout = "_AdminLayout";
+    else
+        Layout = "_UserLayout";
+}

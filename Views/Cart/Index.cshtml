@@ -1,0 +1,46 @@
+﻿@using MyShopPet.Models.Domain;
+@using MyShopPet.Models.ViewModels.CartViewModel;
+@model CartIndexViewModel
+@{
+	int num = 0;
+}
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>%</th>
+			<th>Title</th>
+			<th>Price</th>
+			<th>Count</th>
+			<th>Total Price</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(CartItem item in Model.Cart.CartItems)
+		{
+			<tr>
+				<td>@(++num)</td>
+				<td>@item.Product.Title</td>
+				<td>@item.Product.Price.ToString("# EUR")</td>
+				<td>@item.Count</td>
+				<td>@((item.Count * item.Product.Price).ToString("# EUR"))</td>
+				<td>
+					<form asp-action="DeleteFromCart" method="post">
+						<input type="hidden" name="id" value="@item.Product.Id">
+						<input type="hidden" name="returnUrl" value="@Model.ReturnUrl">
+						<input type="submit" value="Delete from Cart" class="btn btn-sm-outline-warning">
+					</form>
+				</td>
+			</tr>
+		}
+	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="4">Total price</th>
+			<th>@Model.Cart.TotalPrice.ToString("# EUR")</th>
+			<th></th>
+		</tr>
+	</tfoot>
+</table>
+<a href="@Model.ReturnUrl" class="btn btn-outline-secondary">Back</a>

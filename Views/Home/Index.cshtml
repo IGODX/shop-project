@@ -1,0 +1,53 @@
+﻿@using MyShopPet.Data;
+@using MyShopPet.Models.ViewModels.HomeViewModel;
+@model HomeIndexViewModel
+@{
+    const int MaxNumberOfPagination= 5;
+    int pages = Model.PageCount >= Model.Page + MaxNumberOfPagination ? Model.Page + MaxNumberOfPagination : Model.PageCount;
+}
+
+<div class="row">
+    <div class="col-3"> 
+        @await Component.InvokeAsync("CategoriesMenu", new {currentCategory = Model.Category})
+    </div>
+    <div class="col">
+        <div class="container-fluid">
+            <div class="row row-cols-2">
+                @foreach(Product product in Model.Products)
+                {
+                    await Html.RenderPartialAsync("_ProductCard", product);
+                }
+            </div>
+        </div>
+        <nav aria-label="pagination-example">
+            <ul class="pagination">
+                @if(Model.Page < 1){
+                <li class="page-item">
+                    <a class="page-link"
+                    asp-action="Index" 
+                    asp-route-page="@(Model.Page-1)" asp-route-category="@Model.Category">Previous</a>
+                    </li>
+                }
+                @for (int i = 1; i <= pages; i++)
+                {
+                    <li class=`@(i==Model.Page ? "page-link active" : "page-link")`>
+                        <a asp-action="Index" asp-route-page="@i" asp-route-category="@Model.Category"
+                       class="page-link">@i</a>
+                    </li>
+                }  
+                 @if(Model.Page < Model.PageCount){
+                    <li class="page-item">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-page="@(Model.Page+1)" asp-route-category="@Model.Category">Next</a>
+                    </li>
+                 }
+            </ul>
+        </nav>
+    </div>
+    <div class="col-1">
+        <a asp-action="Index" asp-controller="Cart">
+            <img src="/WebImages/ShoppingCart.png"/>
+        </a>
+    </div>
+</div>

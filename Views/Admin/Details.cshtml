@@ -1,0 +1,50 @@
+﻿@using MyShopPet.Data;
+@model Product
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <div class="main-image-wrapper">
+        <img class="main-image" src="@Model.Photos?.FirstOrDefault()?.PhotoUrl" alt="@Model.Photos?.FirstOrDefault()?.Filename" id="mainPhoto">
+        </div>
+    </div>
+    <div class="other-imges mb-5">
+    @foreach (var photo in Model.Photos!.Take(8))
+    {
+        <a href="javascript:" onclick="return changeMainPhoto(event, '@photo.PhotoUrl')">
+            <img src="@photo.PhotoUrl" alt="@photo.Filename">
+        </a>
+    }
+    </div>
+    <dl class="row">
+        <dt class = "col-sm-4">
+            Title:
+        </dt>
+        <dd class = "col-sm-8">
+            @Model.Title
+        </dd>
+        <dt class="col-sm-4">
+            Price:
+        </dt>
+        <dd class="col-sm-8">
+            @Model.Price
+        </dd>
+        <dt class="col-sm-4">
+            Count:
+        </dt>
+        <dd class="col-sm-8">
+            @Model.Count
+        </dd>
+        <dt class="col-sm-4">
+            Category:
+        </dt>
+        <dd class="col-sm-8">
+            @Model.Category?.Title
+        </dd>
+    </dl>
+<div>
+    <a asp-action="EditProduct" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

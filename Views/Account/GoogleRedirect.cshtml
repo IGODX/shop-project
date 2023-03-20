@@ -1,0 +1,19 @@
+﻿@model string?[]
+
+<h2 class="alert alert-primary">User info</h2>
+<table class="table table-stripped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			@foreach(string? str in Model)
+			{
+				<td>@str</td>
+			}
+		</tr>
+	</tbody>
+</table>
