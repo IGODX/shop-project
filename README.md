@@ -42,6 +42,6 @@ Also, you can edit your products. You can add and delete photos without reloadin
 - Remove existing users,
 - Give another user roles.
 
-### Default user can only see products and add it to the card.
+### Default user can only see products and add it to the cart.
 
 
