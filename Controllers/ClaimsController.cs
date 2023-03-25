@@ -37,14 +37,14 @@ namespace MyShopPet.Controllers
                     return RedirectToAction("Index");
                 else
                 {
-                    Errors(result);
+                    ShowErrors(result);
                     return View();
                 }
             }
             return RedirectToAction("Login", "Account");
         }
 
-        public void Errors(IdentityResult result)
+        public void ShowErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {

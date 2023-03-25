@@ -1,7 +1,7 @@
 ﻿using MyShopPet.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyShopPet.Interfaces;
+using MyShopPet.Repositories.Abstraction;
 
 namespace MyShopPet.ViewComponents
 {

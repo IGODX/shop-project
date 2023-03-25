@@ -2,8 +2,8 @@
 using MyShopPet.Extensions;
 using MyShopPet.Models.ViewModels.CartViewModel;
 using Microsoft.AspNetCore.Mvc;
-using MyShopPet.Interfaces;
 using MyShopPet.Models.Domain;
+using MyShopPet.Repositories.Abstraction;
 
 namespace MyShopPet.Controllers
 {
