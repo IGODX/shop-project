@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyShopPet.Data;
-using MyShopPet.Interfaces;
+using MyShopPet.Repositories.Abstraction;
 
 namespace MyShopPet.Repositories
 {

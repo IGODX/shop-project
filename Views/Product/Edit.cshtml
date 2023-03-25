@@ -66,7 +66,7 @@
             const formData = new FormData();
             for (let i in files)
                 formData.append("file_to_upload", files[i]);
-            let resp = await fetch(`/Admin/UploadImages/${productId}`, {
+            let resp = await fetch(`/Photo/UploadImages/${productId}`, {
                 method: "POST",
                 headers: { "accept": "application/json" },
                 body: formData,
@@ -94,7 +94,7 @@
         }
 
         async function removeImageFromWebsite(imgId) {
-            let resp = await fetch(`/Admin/DeleteImage/${imgId}`, {
+            let resp = await fetch(`/Photo/DeleteImage/${imgId}`, {
                 method: "DELETE",
             })
             if (resp.ok == true) {

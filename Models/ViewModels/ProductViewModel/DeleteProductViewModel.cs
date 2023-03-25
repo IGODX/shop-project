@@ -1,6 +1,6 @@
 ﻿using MyShopPet.Data;
 
-namespace MyShopPet.Models.ViewModels.AdminViewModel
+namespace MyShopPet.Models.ViewModels.ProductViewModel
 {
     public class DeleteProductViewModel
     {

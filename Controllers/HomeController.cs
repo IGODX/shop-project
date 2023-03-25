@@ -2,8 +2,8 @@
 using MyShopPet.Models.ViewModels.HomeViewModel;
 using Microsoft.AspNetCore.Mvc;
 using MyShopPet.Data;
-using MyShopPet.Interfaces;
 using MyShopPet.Models;
+using MyShopPet.Repositories.Abstraction;
 
 namespace MyShopPet.Controllers
 {
@@ -18,7 +18,7 @@ namespace MyShopPet.Controllers
 
         public IActionResult Index(string? category, int page = 1)
         {
-            if (page == 0)
+            if (page <= 0)
                 return NotFound();
             IQueryable<Product> products = _productRepository.GetAll();
             if (category != null)

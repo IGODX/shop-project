@@ -1,6 +1,6 @@
 ﻿using MyShopPet.Data;
 
-namespace MyShopPet.Interfaces
+namespace MyShopPet.Repositories.Abstraction
 {
     public interface IPhotoRepository : IRepository<Photo>
     {

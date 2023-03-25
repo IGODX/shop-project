@@ -1,4 +1,4 @@
-﻿namespace MyShopPet.Interfaces
+﻿namespace MyShopPet.Repositories.Abstraction
 {
     public interface IRepository<T>
     {

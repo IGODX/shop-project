@@ -79,7 +79,7 @@ namespace MyShopPet.Controllers
                     else
                         return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError(string.Empty, "Login or Password wrong!");
+                ModelState.AddModelError(string.Empty,"Login or Password wrong!");
 
             }
             return View(vM);
@@ -148,5 +148,6 @@ namespace MyShopPet.Controllers
         {
             return View();
         }
+
     }
 }
