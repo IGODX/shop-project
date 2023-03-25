@@ -1,0 +1,107 @@
+﻿@model EditProductViewModel
+@{
+    Product product = Model.Product;
+}
+<h1>Edit</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    @{await Html.RenderPartialAsync("_ProductImage", product);}
+
+    <div class="col-md-4">
+        <form asp-action="EditProduct" name="mainForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Product.Id" />
+            <div class="form-group">
+                <label asp-for="Product.Title" class="control-label"></label>
+                <input asp-for="Product.Title" class="form-control" />
+                <span asp-validation-for="Product.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Price" class="control-label"></label>
+                <input asp-for="Product.Price" class="form-control" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Count" class="control-label"></label>
+                <input asp-for="Product.Count" class="form-control" />
+                <span asp-validation-for="Product.Count" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="control-label" asp-for="Product.Category"></label>
+                <select asp-for="Product.CategoryId" class="form-control" asp-items="@Model.CategorySL"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", async () => {
+            const productElement = document.getElementById('productId');
+            const productId = parseInt(productElement.value);
+            const addBtn = document.getElementById('addBtn');
+            const input = document.getElementById('inputFile');
+            const deleteBtn = document.getElementById('deleteBtn');
+
+            addBtn.onclick = () => {
+                input.click();
+            };
+            input.onchange = () => {
+                const files = input.files;
+                addToWebsite(files, productId);
+            };
+            deleteBtn.onclick = () => {
+                let mainPhoto = document.getElementById('mainPhoto');
+                let imageId = mainPhoto.dataset.mainImgId;
+                removeImageFromWebsite(imageId);
+            };
+        })
+        async function addToWebsite(files, productId) {
+            const formData = new FormData();
+            for (let i in files)
+                formData.append("file_to_upload", files[i]);
+            let resp = await fetch(`/Photo/UploadImages/${productId}`, {
+                method: "POST",
+                headers: { "accept": "application/json" },
+                body: formData,
+            });
+            if (resp.ok == true) {
+                let otherImages = document.getElementById('otherImages');
+                let data = await resp.json();
+                for (let j in data) {
+                    otherImages.append(initializeImage(data[j]));
+                }
+            }
+        }
+        function initializeImage(image) {
+            let tagA = document.createElement("a");
+            tagA.setAttribute("href", "javascript:");
+            tagA.setAttribute(`data-other-img-id`, `${image.id}`);
+            tagA.onclick = () => {
+                return changeMainPhoto(image.id, `${image.photoUrl}`);
+            }
+            let img = document.createElement("img");
+            img.setAttribute(`src`, `${image.photoUrl}`);
+            img.setAttribute(`alt`, `${image.filename}`);
+            tagA.append(img);
+            return tagA;
+        }
+
+        async function removeImageFromWebsite(imgId) {
+            let resp = await fetch(`/Photo/DeleteImage/${imgId}`, {
+                method: "DELETE",
+            })
+            if (resp.ok == true) {
+                document.querySelector(`a[data-other-img-id="${imgId}"]`).remove();
+                let newMainImage = document.getElementById('otherImages');
+                newMainImage.firstElementChild.click();
+            }
+        }
+    </script>
+}
