@@ -85,38 +85,45 @@ namespace MyShopPet.Extensions
             app.UseAuthorization();
 
             app.UseSession();
-
             app.MapControllerRoute(
-                name: "default",
-                pattern: "Cart",
+               name: "claimsIndex",
+               pattern: "/Claims",
+               defaults: new { controller = "Claims", action = "Index" });
+            app.MapControllerRoute(
+               name: "rolesIndex",
+               pattern: "/Roles",
+               defaults: new { controller = "Roles", action = "Index" });
+            app.MapControllerRoute(
+                name: "cartIndex",
+                pattern: "/Cart",
                 defaults: new { controller = "Cart", action = "Index" });
             app.MapControllerRoute(
-                name: "default",
-                pattern: "Cart/{id}/{returnUrl}",
+                name: "addToCard",
+                pattern: "/Cart/{id}/{returnUrl}",
                 defaults: new { controller = "Cart", action = "AddToCard" });
             app.MapControllerRoute(
-                name: "default",
-                pattern: "Admin",
+                name: "adminIndex",
+                pattern: "/Admin",
                 defaults: new { controller = "Admin", action = "Index" });
             app.MapControllerRoute(
-                name: "default",
-                pattern: "User",
+                name: "userIndex",
+                pattern: "/User",
                 defaults: new { controller = "User", action = "Index" });
             app.MapControllerRoute(
-                name: "default",
+                name: "homeIndex",
                 pattern: "/",
                 defaults: new { controller = "Home", action = "Index" });
             app.MapControllerRoute(
-                name: "default",
-                pattern: "page{page:int}",
+                name: "homeIndexPage",
+                pattern: "/page{page:int}",
                 defaults: new { controller = "Home", action = "Index" });
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{category?}",
+                name: "category",
+                pattern: "/{category?}",
                 defaults: new { controller = "Home", action = "Index" });
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{category}/page{page:int}",
+                name: "categoryPage",
+                pattern: "/{category}/page{page:int}",
                 defaults: new { controller = "Home", action = "Index" });
             app.MapControllerRoute(
                 name: "default",
