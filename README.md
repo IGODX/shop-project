@@ -3,7 +3,7 @@
 ### Project description:
 A simple C# ASP.NET Core project that represent my knowledge of technology. 
 
-### Project contains: CRUD operations,  
+### Project contains: CRUD operations, authorization, authentication with Google and Facebook ( or creating new account ), cart ( that works with session )
 
 ### Used technologies:
 - C# 6.0
